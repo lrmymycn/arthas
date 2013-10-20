@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>iSwitch</title>
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.0.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.0-beta.js"></script>
+        <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+        <script type="text/javascript" src="js/knockout-mapping.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript">
+            $(function(){
+            	App.init();
+            });
+        </script>
+    </head>
+    <body>
+    	<nav>
+			<ul data-bind="foreach: rooms()">
+				<li><a href="#" data-bind="css: room() + ($root.currentRoom().id() == id() ? ' active' : ''), event:{vmousedown: $root.changePage}"><span></span><i data-bind="text: label()"></i></a></li>
+			</ul>
+		</nav>
+        <div id="page-home" data-role="page">
+			<div data-role="content">
+				<div class="main">
+					<div class="lights">
+						<div class="button-all">
+							<div class="inner">
+								<img src="img/icons/light.png" alt="" width="96" height="96" class="icon"/>
+								<div class="flip">
+									<div data-role="controlgroup" data-type="horizontal" data-bind="css: allLights">
+										<input data-bind="checked: allLights" name="light-all" id="light-all-on" value="on" type="radio">
+										<label for="light-all-on" data-bind="css: {'ui-btn-active': allLights() == 'on'}">On</label>
+										<input data-bind="checked: allLights" name="light-all" id="light-all-off" value="off" type="radio">
+										<label for="light-all-off" data-bind="css: {'ui-btn-active': allLights() == 'off'}">Off</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="room-buttons">
+							<ul data-bind="foreach: rooms(), flipHandler: rooms()">
+								<!-- ko foreach: controls() -->
+									<!-- ko if: type() == 'light' -->
+									<li>
+										<div class="icon" data-bind="css: $parent.room()"><i data-bind="text: $parent.label()"></i></div>
+										<div class="flip">
+											<div data-role="controlgroup" data-type="horizontal" data-mini="true" data-bind="css: status()">
+												<input data-bind="attr: {name: 'light-on-' + id(), id : 'light-on-' + id()}, checked: status, event:{change: $root.onFlipChange}" value="on" type="radio">
+												<label data-bind="attr: {for: 'light-on-' + id()}, css: {'ui-btn-active': status() == 'on'}">On</label>
+												<input data-bind="attr: {name: 'light-off-' + id(), id : 'light-off-' + id()}, checked: status, event:{change: $root.onFlipChange}" value="off" type="radio">
+												<label data-bind="attr: {for: 'light-off-' + id()}, css: {'ui-btn-active': status() == 'off'}">Off</label>
+											</div>
+										</div>
+									</li>
+									<!-- /ko -->
+								<!-- /ko -->
+							</ul>
+						</div>
+					</div>
+					<hr/>
+					<div class="curtains">
+						<div class="button-all">
+							<div class="inner">
+								<img src="img/icons/curtain.png" alt="" width="96" height="96" class="icon"/>
+								<div class="flip">
+									<div data-role="controlgroup" data-type="horizontal" data-bind="css: allCurtains">
+										<input data-bind="checked: allCurtains" name="curtain-all" id="curtain-all-on" value="on" type="radio">
+										<label for="curtain-all-on" data-bind="css: {'ui-btn-active': allCurtains() == 'on'}">On</label>
+										<input data-bind="checked: allCurtains" name="curtain-all" id="curtain-all-off" value="off" type="radio">
+										<label for="curtain-all-off" data-bind="css: {'ui-btn-active': allCurtains() == 'off'}">Off</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="room-buttons">
+							<ul data-bind="foreach: rooms(), flipHandler: rooms()">
+								<!-- ko foreach: controls() -->
+									<!-- ko if: type() == 'curtain' -->
+									<li>
+										<div class="icon" data-bind="css: $parent.room()"><i data-bind="text: $parent.label()"></i></div>
+										<div class="flip">
+											<div data-role="controlgroup" data-type="horizontal" data-mini="true" data-bind="css: status()">
+												<input data-bind="attr: {name: 'light-on-' + id(), id : 'light-on-' + id()}, checked: status, event:{change: $root.onFlipChange}" value="on" type="radio">
+												<label data-bind="attr: {for: 'light-on-' + id()}, css: {'ui-btn-active': status() == 'on'}">On</label>
+												<input data-bind="attr: {name: 'light-off-' + id(), id : 'light-off-' + id()}, checked: status, event:{change: $root.onFlipChange}" value="off" type="radio">
+												<label data-bind="attr: {for: 'light-off-' + id()}, css: {'ui-btn-active': status() == 'off'}">Off</label>
+											</div>
+										</div>
+									</li>
+									<!-- /ko -->
+								<!-- /ko -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div id="page-room" data-role="page">
+			<div data-role="content">
+				<div class="main">
+					<div class="room wrapper">
+						<div class="label">
+							<div class="icon" data-bind="css: currentRoom().room()"><i data-bind="text: currentRoom().label()"></i></div>
+						</div>
+						<div class="controls">
+							<ul data-bind="foreach: currentRoom().controls(), roomHandler: currentRoom()">
+								<li>
+									<div class="icon" data-bind="css: type()"></div>
+									<div class="flip">
+										<div data-role="controlgroup" data-type="horizontal" data-mini="true" data-bind="css: status()">
+											<input data-bind="attr: {name: 'room-on-' + id(), id : 'room-on-' + id()}, checked: status, event:{change: $root.onFlipChange}" value="on" type="radio">
+											<label data-bind="attr: {for: 'room-on-' + id()}, css: {'ui-btn-active': status() == 'on'}">On</label>
+											<input data-bind="attr: {name: 'room-off-' + id(), id : 'room-off-' + id()}, checked: status, event:{change: $root.onFlipChange}" value="off" type="radio">
+											<label data-bind="attr: {for: 'room-off-' + id()}, css: {'ui-btn-active': status() == 'off'}">Off</label>
+										</div>
+									</div>
+									<div class="slider">
+										<input data-bind="attr: {name: 'room-slider-' + id(), id: 'room-slider-' + id()}" data-highlight="true" min="0" max="100" value="50" type="range">
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="page-settings" data-role="page">
+			<div data-role="content">
+				<div class="main">
+					<div class="wrapper">
+						<form>
+							<div data-role="fieldcontain">
+								<label for="text-ip">IP Address:</label>
+								<input name="ip" id="text-ip" placeholder="e.g. 192.168.1.1" value="" type="text">
+							</div>
+							<div data-role="fieldcontain">
+								<label for="text-username">Username:</label>
+								<input name="username" id="text-username" placeholder="e.g. admin" value="" type="text">
+							</div>
+							<div data-role="fieldcontain">
+								<label for="text-password">Password:</label>
+								<input name="password" id="text-password" value="" type="password">
+							</div>
+							<a href="#" data-role="button" data-inline="true">Save</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dock">
+			<a href="javascript:;" class="morning">Morning</a>
+			<a href="javascript:;" class="movie">Movie</a>
+			<a href="javascript:;" class="night">Night</a>
+			<div class="logo"></div>
+			<a href="#page-settings" class="settings">Settings</a>
+		</div>
+    </body>
+</html>

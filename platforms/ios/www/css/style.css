@@ -1,0 +1,497 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#FFFFFF;
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+}
+
+.ui-content{
+	padding:0;
+}
+
+.ui-page-theme-a{
+	background:#ffffff;
+}
+
+/* Flip */
+
+.flip .ui-controlgroup{
+	width:52px;
+	margin:2px auto;
+	padding:1px;
+	background:url(../img/buttons/light-on.png) no-repeat;
+	background-size:100% auto;
+}
+
+.flip .ui-controlgroup.ui-mini{
+	width:32px;
+}
+
+.flip .ui-controlgroup.off{
+	background:url(../img/buttons/light-off.png) no-repeat;
+	background-size:100% auto;
+}
+
+.curtains .flip .ui-controlgroup{
+	background:url(../img/buttons/curtain-on.png) no-repeat;
+	background-size:100% auto;
+}
+
+.curtains .flip .ui-controlgroup.off{
+	background:url(../img/buttons/curtain-off.png) no-repeat;
+	background-size:100% auto;
+}
+
+.flip .ui-radio{
+	float:none;
+	position:relative;
+	overflow:hidden;
+}
+
+.flip .ui-radio label{
+	width:52px;
+	height:52px;
+	display:block;
+	padding:0;
+	margin:0;
+	overflow:hidden;
+	text-indent:-999px;
+	background:none;
+	border:none;
+}
+.flip .ui-mini .ui-radio label{
+	width:32px;
+	height:32px;
+}
+
+.flip .ui-radio label.ui-btn-active{
+	background:#efefef;
+}
+
+.flip .ui-radio label:hover,
+.flip .ui-radio label:active{
+	background:none;
+}
+
+.flip .ui-radio label.ui-btn-active:hover,
+.flip .ui-radio label.ui-btn-active:active{
+	background:#efefef;
+}
+
+.flip .ui-radio input{
+	position:absolute;
+	left:-100px;
+}
+
+/* Slider */
+
+
+.slider input.ui-slider-input{
+	display:none;
+}
+
+.slider .ui-slider-track{
+	margin:15px 0;
+	height:4px;
+	border:none;
+}
+
+.slider .ui-slider-handle{
+	border-radius: 15px;
+}
+
+.slider .ui-btn-active{
+	background:#009c93 !important;
+}
+
+/* Icon */
+.icon {
+	position:relative;
+}
+
+.icon.livingroom{
+	background-image: url(../img/rooms/livingroom-main.png);
+}
+
+.icon.corridor{
+	background-image: url(../img/rooms/corridor-main.png);
+}
+
+.icon.study{
+	background-image: url(../img/rooms/study-main.png);
+}
+
+.icon.kitchen{
+	background-image: url(../img/rooms/kitchen-main.png);
+}
+
+.icon.bedroom{
+	background-image: url(../img/rooms/bedroom-main.png);
+}
+
+.icon.bathroom{
+	background-image: url(../img/rooms/bathroom-main.png);
+}
+
+.icon.light{
+	background-image: url(../img/icons/light.png);
+}
+
+.icon.curtain{
+	background-image: url(../img/icons/curtain.png);
+}
+
+.icon.lamp{
+	background-image: url(../img/icons/lamp.png);
+}
+
+.icon i{
+	position:absolute;
+	top:7px;
+	right:7px;
+	font-size:12px;
+	z-index:5;
+	font-style:normal;
+	color:#009c93;
+}
+
+/* rooms */
+nav{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:10;
+	width:96px;
+	background:#f7f7f7;
+	height:1004px;
+	-webkit-box-shadow: inset -10px 0px 10px -10px rgba(50, 50, 50, 0.5); 
+	box-shadow:         inset -10px 0px 10px -10px rgba(50, 50, 50, 0.5);
+}
+
+nav li{
+	border-bottom:1px solid #9ea09f;
+}
+
+nav li:last-child{
+	border:none;
+}
+
+nav a{
+	display:block;
+	width:96px;
+	height:96px;
+	background-size:100%;
+	overflow:hidden;
+	position:relative;
+}
+
+nav a i{
+	position:absolute;
+	top:10px;
+	right:10px;
+	z-index:5;
+	font-style:normal;
+	color:#009c93;
+}
+
+nav a span{
+	position:absolute;
+	top:50%;
+	right:0;
+	margin-top:-10px;
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+	border-right:10px solid #ffffff;
+	display:none;
+}
+
+nav a.active{
+	-webkit-box-shadow: inset -10px 0px 10px -10px rgba(50, 50, 50, 0.5); 
+	box-shadow:         inset -10px 0px 10px -10px rgba(50, 50, 50, 0.5); 
+}
+
+nav a.active i{
+	color:#ffffff;
+}
+
+nav a.active span{
+	display:block;
+}
+
+nav a.home{
+	background-image:url(../img/rooms/home.png);
+}
+
+nav a.home.active{
+	background-image:url(../img/rooms/home-active.jpg);
+}
+
+nav a.livingroom{
+	background-image:url(../img/rooms/livingroom.png);
+}
+
+nav a.livingroom.active{
+	background-image:url(../img/rooms/livingroom-active.jpg);
+}
+
+nav a.corridor{
+	background-image:url(../img/rooms/corridor.png);
+}
+
+nav a.corridor.active{
+	background-image:url(../img/rooms/corridor-active.png);
+}
+
+nav a.kitchen{
+	background-image:url(../img/rooms/kitchen.png);
+}
+
+nav a.kitchen.active{
+	background-image:url(../img/rooms/kitchen-active.png);
+}
+
+nav a.study{
+	background-image:url(../img/rooms/study.png);
+}
+
+nav a.study.active{
+	background-image:url(../img/rooms/study-active.png);
+}
+
+nav a.bedroom{
+	background-image:url(../img/rooms/bedroom.png);
+}
+
+nav a.bedroom.active{
+	background-image:url(../img/rooms/bedroom-active.png);
+}
+
+nav a.bathroom{
+	background-image:url(../img/rooms/bathroom.png);
+}
+
+nav a.bathroom.active{
+	background-image:url(../img/rooms/bathroom-active.png);
+}
+
+/* main */
+.main {
+	margin-left:96px;
+	height:914px;
+	background:#ffffff;
+}
+
+.main .wrapper{
+	padding:50px;
+}
+
+.main hr{
+	margin:0px 14px;
+	border-top:1px solid #9ea09f;
+}
+
+.lights{
+	height:484px;
+}
+
+.curtains{
+	height:428px;
+}
+
+.button-all{
+	width:181px;
+	border-right:1px solid #9ea09f;
+	height:484px;
+	float:left;
+	position:relative;
+}
+
+.curtains .button-all{
+	height:428px;
+}
+
+.button-all .inner{
+	width:96px;
+	margin:96px auto 0;
+}
+
+.room-buttons{
+	padding-top:40px;
+	margin-left:182px;
+}
+
+.room-buttons ul{
+	list-style:none;
+}
+
+.room-buttons ul li{
+	float:left;
+	width:144px;
+	margin:0 0 15px 50px;
+}
+
+.room-buttons div.icon{
+	width:72px;
+	height:72px;
+	float:left;
+	background-repeat:no-repeat;
+	background-size:100% auto;
+}
+
+.room-buttons .flip{
+	float:left;
+	width:72px;
+	height:72px;
+}
+
+
+/* dock */
+.dock {
+	height:90px;
+	width:672px;
+	border-top:1px solid #9ea09f;
+	position:absolute;
+	left:96px;
+	top:914px;
+	z-index:10;
+}
+
+.dock a{
+	width:90px;
+	height:90px;
+	float:left;
+	background-size:100%;
+	text-indent:-9999px;
+	overflow:hidden;
+	border-right:1px solid #9ea09f;
+}
+
+.dock a.morning{
+	background-image:url(../img/themes/morning.png);
+}
+
+.dock a.morning:active,
+.dock a.morning.active{
+	background-image:url(../img/themes/morning-active.png);
+}
+
+.dock a.movie{
+	background-image:url(../img/themes/movie.png);
+}
+
+.dock a.movie:active,
+.dock a.movie.active{
+	background-image:url(../img/themes/movie-active.png);
+}
+
+.dock a.night{
+	background-image:url(../img/themes/night.png);
+}
+
+.dock a.night:active,
+.dock a.night.active{
+	background-image:url(../img/themes/night-active.png);
+}
+
+.dock a.settings{
+	background-image:url(../img/settings.png);
+	float:right;
+}
+
+.dock .logo{
+	background:url(../img/logo.png) no-repeat center center;
+	background-size:auto 100%;
+	float:left;
+	width:300px;
+	height:90px;
+}
+
+/* room */
+
+.room .label{
+	float:left;
+	width: 130px;
+}
+
+.room .label .icon{
+	width:72px;
+	height:72px;
+	background-repeat:no-repeat;
+	background-size:100% auto;
+}
+
+.room .controls{
+	float:left;
+}
+
+.room .controls ul{
+	list-style:none;
+}
+
+.room .controls ul li{
+	height:80px;
+}
+
+.room .controls .icon{
+	width:72px;
+	height:72px;
+	float:left;
+	background-repeat:no-repeat;
+	background-size:100% auto;
+}
+
+.room .controls .flip{
+	float:left;
+	width:72px;
+	height:72px;
+}
+
+.room .controls .slider{
+	float:left;
+	margin-left:25px;
+	width:250px;
+}
